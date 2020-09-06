@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "module": "esNext",
+    "moduleResolution": "node",
+    "target": "es5",
+    "sourceMap": true,
+    "strict": true,
+    "removeComments": true,
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "noImplicitReturns": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "noFallthroughCasesInSwitch": true,
+    "rootDir": "src"
+  }
+}
