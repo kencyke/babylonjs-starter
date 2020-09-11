@@ -3,6 +3,7 @@ const fs = require("fs")
 const { merge } = require("webpack-merge")
 const common = require("./webpack.common.js")
 
+const host = process.env.HOST || '0.0.0.0'
 // App directory
 const appDirectory = fs.realpathSync(process.cwd())
 
@@ -14,6 +15,9 @@ module.exports = merge(common, {
     compress: true,
     hot: true,
     publicPath: "/",
-    open: true
+    open: true,
+    host,
+    port: 3000,
+    watchContentBase: true
   }
 })
