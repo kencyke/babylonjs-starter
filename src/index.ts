@@ -1,19 +1,31 @@
 import "@babylonjs/core/Debug/debugLayer"
 import "@babylonjs/inspector"
-import { ArcRotateCamera, Engine, HemisphericLight, Mesh, Scene, Vector3 } from "@babylonjs/core"
+import { ArcRotateCamera, Engine, HemisphericLight, Scene, Vector3, Color3 } from "@babylonjs/core"
+import { createCuboid, CuboidShape } from "./cuboid"
 
 const createScene = (canvas: HTMLCanvasElement, engine: Engine): Scene => {
   const scene = new Scene(engine)
 
-  const camera = new ArcRotateCamera("camera1", (3 * Math.PI) / 2, Math.PI / 4, 30, Vector3.Zero(), scene)
+  const camera = new ArcRotateCamera("camera", (3 * Math.PI) / 2, Math.PI / 4, 30, Vector3.Zero(), scene)
   camera.attachControl(canvas, true)
 
-  new HemisphericLight("light1", new Vector3(0, 1, 0), scene)
+  const lowerLight = new HemisphericLight("lower-light", new Vector3(0, -1, 0), scene)
+  lowerLight.intensity = 0.7
+  const higherLight = new HemisphericLight("higher-light", new Vector3(0, 1, 0), scene)
+  higherLight.intensity = 0.7
 
-  const sphere = Mesh.CreateSphere("sphere1", 16, 2, scene)
-  sphere.position.y = 1
-
-  Mesh.CreateGround("ground1", 6, 6, 2, scene)
+  const cuboidShape: CuboidShape = {
+    x: 0,
+    y: 0,
+    z: 0,
+    width: 2,
+    height: 2,
+    depth: 2,
+    rotationX: 0,
+    rotationY: 0,
+    rotationZ: 0
+  }
+  createCuboid("cuboid", cuboidShape, Color3.Green(), scene)
 
   return scene
 }
