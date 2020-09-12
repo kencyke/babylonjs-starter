@@ -32,7 +32,7 @@ const createScene = (canvas: HTMLCanvasElement, engine: Engine): Scene => {
 
 const init = (): void => {
   const canvas = document.getElementById("renderCanvas") as HTMLCanvasElement
-  const engine = new Engine(canvas, true)
+  const engine = new Engine(canvas, true, { preserveDrawingBuffer: true, stencil: true })
   const scene = createScene(canvas, engine)
 
   engine.runRenderLoop(() => {
