@@ -1,8 +1,7 @@
 import "@babylonjs/core/Debug/debugLayer"
 import "@babylonjs/inspector"
-import { ArcRotateCamera, Engine, HemisphericLight, Scene, Vector3, Color3, Color4 } from "@babylonjs/core"
+import { ArcRotateCamera, Engine, HemisphericLight, Scene, Vector3, Color3 } from "@babylonjs/core"
 import { createCuboid, CuboidShape } from "./cuboid"
-import { CircleAroundCursor } from "./cursor"
 
 const createScene = (canvas: HTMLCanvasElement, engine: Engine): Scene => {
   const scene = new Scene(engine)
@@ -39,15 +38,6 @@ const init = (): void => {
   engine.runRenderLoop(() => {
     scene.render()
   })
-
-  const circle = new CircleAroundCursor(80, new Color4(255, 255, 255, 0.3), false)
-  scene.onPointerMove = function (evt) {
-    // TODO: hide circle when cursor is out of canvas
-    if (!circle.isVisible()) {
-      circle.show()
-    }
-    circle.setPosition(evt.clientX, evt.clientY)
-  }
 
   window.addEventListener("resize", () => {
     engine.resize()
